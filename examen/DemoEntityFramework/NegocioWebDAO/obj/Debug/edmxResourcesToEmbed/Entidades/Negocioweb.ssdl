@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NegocioWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categorías">
+    <Key>
+      <PropertyRef Name="IdCategoría" />
+    </Key>
+    <Property Name="IdCategoría" Type="int" Nullable="false" />
+    <Property Name="NombreCategoría" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="NombreCompañía" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="NombreContacto" Type="nvarchar" MaxLength="30" />
+    <Property Name="CargoContacto" Type="nvarchar" MaxLength="30" />
+    <Property Name="Dirección" Type="nvarchar" MaxLength="60" />
+    <Property Name="Ciudad" Type="nvarchar" MaxLength="15" />
+    <Property Name="País" Type="nvarchar" MaxLength="15" />
+    <Property Name="Teléfono" Type="nvarchar" MaxLength="24" />
+  </EntityType>
+  <EntityType Name="COMISIONES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MONTO" Type="money" />
+    <Property Name="FECHA" Type="date" />
+    <Property Name="IDPEDIDO" Type="int" />
+  </EntityType>
+  <EntityType Name="Compañías de envíos">
+    <Key>
+      <PropertyRef Name="IdCompañíaEnvíos" />
+    </Key>
+    <Property Name="IdCompañíaEnvíos" Type="int" Nullable="false" />
+    <Property Name="NombreCompañía" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Teléfono" Type="nvarchar" MaxLength="24" />
+  </EntityType>
+  <EntityType Name="Detalles de pedidos">
+    <Key>
+      <PropertyRef Name="IdPedido" />
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdPedido" Type="int" Nullable="false" />
+    <Property Name="IdProducto" Type="int" Nullable="false" />
+    <Property Name="PrecioUnidad" Type="money" Nullable="false" />
+    <Property Name="Cantidad" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empleados">
+    <Key>
+      <PropertyRef Name="IdEmpleado" />
+    </Key>
+    <Property Name="IdEmpleado" Type="int" Nullable="false" />
+    <Property Name="Apellidos" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Cargo" Type="nvarchar" MaxLength="30" />
+    <Property Name="FechaNacimiento" Type="datetime" />
+    <Property Name="FechaContratación" Type="datetime" />
+    <Property Name="Dirección" Type="nvarchar" MaxLength="60" />
+    <Property Name="Ciudad" Type="nvarchar" MaxLength="15" />
+    <Property Name="País" Type="nvarchar" MaxLength="15" />
+    <Property Name="TelDomicilio" Type="nvarchar" MaxLength="24" />
+    <Property Name="Foto" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="HISTORICOS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="NOMBRE" Type="nvarchar" MaxLength="25" />
+    <Property Name="APELLIDOS" Type="nvarchar" MaxLength="50" />
+    <Property Name="ELIMINADO" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Pedidos">
+    <Key>
+      <PropertyRef Name="IdPedido" />
+    </Key>
+    <Property Name="IdPedido" Type="int" Nullable="false" />
+    <Property Name="IdCliente" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="IdEmpleado" Type="int" />
+    <Property Name="FechaPedido" Type="datetime" />
+    <Property Name="FechaEntrega" Type="datetime" />
+    <Property Name="FormaEnvío" Type="int" />
+    <Property Name="Cargo" Type="money" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProducto" Type="int" Nullable="false" />
+    <Property Name="NombreProducto" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="IdProveedor" Type="int" />
+    <Property Name="IdCategoría" Type="int" />
+    <Property Name="CantidadPorUnidad" Type="nvarchar" MaxLength="20" />
+    <Property Name="PrecioUnidad" Type="money" />
+    <Property Name="UnidadesEnExistencia" Type="smallint" />
+    <Property Name="UnidadesEnPedido" Type="smallint" />
+    <Property Name="NivelNuevoPedido" Type="int" />
+    <Property Name="Suspendido" Type="bit" Nullable="false" />
+    <Property Name="foto" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Proveedores">
+    <Key>
+      <PropertyRef Name="IdProveedor" />
+    </Key>
+    <Property Name="IdProveedor" Type="int" Nullable="false" />
+    <Property Name="NombreCompañía" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Dirección" Type="nvarchar" MaxLength="60" />
+    <Property Name="Ciudad" Type="nvarchar" MaxLength="15" />
+    <Property Name="País" Type="nvarchar" MaxLength="15" />
+    <Property Name="Teléfono" Type="nvarchar" MaxLength="24" />
+    <Property Name="PáginaPrincipal" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__COMISIONE__IDPED__5006DFF2">
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="0..1" />
+    <End Role="COMISIONES" Type="Self.COMISIONES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedidos">
+        <PropertyRef Name="IdPedido" />
+      </Principal>
+      <Dependent Role="COMISIONES">
+        <PropertyRef Name="IDPEDIDO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detalles de pedidos_Pedidos">
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Detalles de pedidos" Type="Self.Detalles de pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedidos">
+        <PropertyRef Name="IdPedido" />
+      </Principal>
+      <Dependent Role="Detalles de pedidos">
+        <PropertyRef Name="IdPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detalles de pedidos_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Detalles de pedidos" Type="Self.Detalles de pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="Detalles de pedidos">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedidos_Clientes">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="Pedidos">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedidos_Compañías de envíos">
+    <End Role="Compañías de envíos" Type="Self.Compañías de envíos" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Compañías de envíos">
+        <PropertyRef Name="IdCompañíaEnvíos" />
+      </Principal>
+      <Dependent Role="Pedidos">
+        <PropertyRef Name="FormaEnvío" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedidos_Empleados">
+    <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="IdEmpleado" />
+      </Principal>
+      <Dependent Role="Pedidos">
+        <PropertyRef Name="IdEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Productos_Categorías">
+    <End Role="Categorías" Type="Self.Categorías" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorías">
+        <PropertyRef Name="IdCategoría" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="IdCategoría" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Productos_Proveedores">
+    <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedores">
+        <PropertyRef Name="IdProveedor" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="IdProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CAMBIOMONEDA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+    <Parameter Name="MONTO" Type="money" Mode="In" />
+    <Parameter Name="MONEDA" Type="varchar" Mode="In" />
+    <Parameter Name="TIPOCAMBIO" Type="money" Mode="In" />
+  </Function>
+  <Function Name="FN_DESCUENTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+    <Parameter Name="MONTO" Type="money" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="Fn_IGV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+    <Parameter Name="MONTO" Type="money" Mode="In" />
+    <Parameter Name="PORCENTAJE" Type="money" Mode="In" />
+  </Function>
+  <Function Name="Fn_PROMEDIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="N1" Type="int" Mode="In" />
+    <Parameter Name="N2" Type="int" Mode="In" />
+    <Parameter Name="N3" Type="int" Mode="In" />
+  </Function>
+  <Function Name="FN_SUELDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+    <Parameter Name="CARGO" Type="varchar" Mode="In" />
+    <Parameter Name="HORASTRAB" Type="int" Mode="In" />
+  </Function>
+  <Function Name="IGV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+    <Parameter Name="MONTO" Type="money" Mode="In" />
+    <Parameter Name="PORCENTAJE" Type="money" Mode="In" />
+  </Function>
+  <Function Name="NIVEL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="PROM" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ActualizarStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tipo" Type="int" Mode="In" />
+    <Parameter Name="idproducto" Type="int" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_AGREGAEMPLEADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDEMPLEADO" Type="int" Mode="In" />
+    <Parameter Name="NOMBRE" Type="nvarchar" Mode="In" />
+    <Parameter Name="APELLIDOS" Type="nvarchar" Mode="In" />
+    <Parameter Name="CARGO" Type="nvarchar" Mode="In" />
+    <Parameter Name="FECHANACIMIENTO" Type="date" Mode="In" />
+    <Parameter Name="FECHACONTRATO" Type="date" Mode="In" />
+    <Parameter Name="RES" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="USP_BUSCAREMPLEADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDEMPLEADO" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_CategoríasDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCategoría" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_CategoríasInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCategoría" Type="int" Mode="In" />
+    <Parameter Name="NombreCategoría" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_CategoríasSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCategoría" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_CategoríasSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_CategoríasUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCategoría" Type="int" Mode="In" />
+    <Parameter Name="NombreCategoría" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ClientesDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ClientesInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+    <Parameter Name="NombreCompañía" Type="nvarchar" Mode="In" />
+    <Parameter Name="NombreContacto" Type="nvarchar" Mode="In" />
+    <Parameter Name="CargoContacto" Type="nvarchar" Mode="In" />
+    <Parameter Name="Dirección" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ciudad" Type="nvarchar" Mode="In" />
+    <Parameter Name="País" Type="nvarchar" Mode="In" />
+    <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ClientesSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ClientesSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ClientesUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+    <Parameter Name="NombreCompañía" Type="nvarchar" Mode="In" />
+    <Parameter Name="NombreContacto" Type="nvarchar" Mode="In" />
+    <Parameter Name="CargoContacto" Type="nvarchar" Mode="In" />
+    <Parameter Name="Dirección" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ciudad" Type="nvarchar" Mode="In" />
+    <Parameter Name="País" Type="nvarchar" Mode="In" />
+    <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_Compañías_de_envíosDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Compañías de envíosDelete">
+    <Parameter Name="IdCompañíaEnvíos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Compañías_de_envíosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Compañías de envíosInsert">
+    <Parameter Name="IdCompañíaEnvíos" Type="int" Mode="In" />
+    <Parameter Name="NombreCompañía" Type="nvarchar" Mode="In" />
+    <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_Compañías_de_envíosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Compañías de envíosSelect">
+    <Parameter Name="IdCompañíaEnvíos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Compañías_de_envíosSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Compañías de envíosSelectAll" />
+  <Function Name="usp_Compañías_de_envíosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Compañías de envíosUpdate">
+    <Parameter Name="IdCompañíaEnvíos" Type="int" Mode="In" />
+    <Parameter Name="NombreCompañía" Type="nvarchar" Mode="In" />
+    <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_Detalles_de_pedidosDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosDelete">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Detalles_de_pedidosDeleteAllByIdPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosDeleteAllByIdPedido">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Detalles_de_pedidosDeleteAllByIdProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosDeleteAllByIdProducto">
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Detalles_de_pedidosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosInsert">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+    <Parameter Name="PrecioUnidad" Type="money" Mode="In" />
+    <Parameter Name="Cantidad" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="usp_Detalles_de_pedidosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosSelect">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Detalles_de_pedidosSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosSelectAll" />
+  <Function Name="usp_Detalles_de_pedidosSelectAllByIdPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosSelectAllByIdPedido">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Detalles_de_pedidosSelectAllByIdProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosSelectAllByIdProducto">
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Detalles_de_pedidosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosUpdate">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+    <Parameter Name="PrecioUnidad" Type="money" Mode="In" />
+    <Parameter Name="Cantidad" Type="smallint" Mode="In" />
+  </Function>
+  <Function Name="usp_DetallesPedidoPorID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idpedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_EDITAEMPLEADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDEMPLEADO" Type="int" Mode="In" />
+    <Parameter Name="NOMBRE" Type="nvarchar" Mode="In" />
+    <Parameter Name="APELLIDOS" Type="nvarchar" Mode="In" />
+    <Parameter Name="CARGO" Type="nvarchar" Mode="In" />
+    <Parameter Name="FECHANACIMIENTO" Type="date" Mode="In" />
+    <Parameter Name="FECHACONTRATO" Type="date" Mode="In" />
+  </Function>
+  <Function Name="USP_ELIMINAEMPLEADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDEMPLEADO" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_EmpleadosDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_EmpleadosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+    <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+    <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="Cargo" Type="nvarchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="datetime" Mode="In" />
+    <Parameter Name="FechaContratación" Type="datetime" Mode="In" />
+    <Parameter Name="Dirección" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ciudad" Type="nvarchar" Mode="In" />
+    <Parameter Name="País" Type="nvarchar" Mode="In" />
+    <Parameter Name="TelDomicilio" Type="nvarchar" Mode="In" />
+    <Parameter Name="Foto" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_EmpleadosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_EmpleadosSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_EmpleadosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+    <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+    <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="Cargo" Type="nvarchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="datetime" Mode="In" />
+    <Parameter Name="FechaContratación" Type="datetime" Mode="In" />
+    <Parameter Name="Dirección" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ciudad" Type="nvarchar" Mode="In" />
+    <Parameter Name="País" Type="nvarchar" Mode="In" />
+    <Parameter Name="TelDomicilio" Type="nvarchar" Mode="In" />
+    <Parameter Name="Foto" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_Listar_pedidosPorFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fechaInicio" Type="smalldatetime" Mode="In" />
+    <Parameter Name="fechaFinal" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cliente" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_Listarproductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_PedidosDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_PedidosDeleteAllByFormaEnvío" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FormaEnvío" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_PedidosDeleteAllByIdCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_PedidosDeleteAllByIdEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_PedidosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPedido" Type="int" Mode="InOut" />
+    <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+    <Parameter Name="FechaPedido" Type="datetime" Mode="In" />
+    <Parameter Name="FechaEntrega" Type="datetime" Mode="In" />
+    <Parameter Name="FormaEnvío" Type="int" Mode="In" />
+    <Parameter Name="Cargo" Type="money" Mode="In" />
+  </Function>
+  <Function Name="usp_pedidosPorFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fechaInicio" Type="smalldatetime" Mode="In" />
+    <Parameter Name="fechaFinal" Type="smalldatetime" Mode="In" />
+    <Parameter Name="cliente" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_PedidosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_PedidosSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_PedidosSelectAllByFormaEnvío" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FormaEnvío" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_PedidosSelectAllByIdCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_PedidosSelectAllByIdEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_PedidosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+    <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+    <Parameter Name="FechaPedido" Type="datetime" Mode="In" />
+    <Parameter Name="FechaEntrega" Type="datetime" Mode="In" />
+    <Parameter Name="FormaEnvío" Type="int" Mode="In" />
+    <Parameter Name="Cargo" Type="money" Mode="In" />
+  </Function>
+  <Function Name="usp_ProductoMasVendidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="anio" Type="int" Mode="In" />
+    <Parameter Name="mes" Type="int" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_productosAgotados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="categoria" Type="int" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ProductosDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ProductosDeleteAllByIdCategoría" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCategoría" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ProductosDeleteAllByIdProveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProveedor" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ProductosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+    <Parameter Name="NombreProducto" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdProveedor" Type="int" Mode="In" />
+    <Parameter Name="IdCategoría" Type="int" Mode="In" />
+    <Parameter Name="CantidadPorUnidad" Type="nvarchar" Mode="In" />
+    <Parameter Name="PrecioUnidad" Type="money" Mode="In" />
+    <Parameter Name="UnidadesEnExistencia" Type="smallint" Mode="In" />
+    <Parameter Name="UnidadesEnPedido" Type="smallint" Mode="In" />
+    <Parameter Name="NivelNuevoPedido" Type="int" Mode="In" />
+    <Parameter Name="Suspendido" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="usp_productosPorNombre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ProductosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ProductosSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ProductosSelectAllByIdCategoría" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCategoría" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ProductosSelectAllByIdProveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProveedor" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ProductosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+    <Parameter Name="NombreProducto" Type="nvarchar" Mode="In" />
+    <Parameter Name="IdProveedor" Type="int" Mode="In" />
+    <Parameter Name="IdCategoría" Type="int" Mode="In" />
+    <Parameter Name="CantidadPorUnidad" Type="nvarchar" Mode="In" />
+    <Parameter Name="PrecioUnidad" Type="money" Mode="In" />
+    <Parameter Name="UnidadesEnExistencia" Type="smallint" Mode="In" />
+    <Parameter Name="UnidadesEnPedido" Type="smallint" Mode="In" />
+    <Parameter Name="NivelNuevoPedido" Type="int" Mode="In" />
+    <Parameter Name="Suspendido" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="usp_ProveedoresDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProveedor" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ProveedoresInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProveedor" Type="int" Mode="In" />
+    <Parameter Name="NombreCompañía" Type="nvarchar" Mode="In" />
+    <Parameter Name="Dirección" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ciudad" Type="nvarchar" Mode="In" />
+    <Parameter Name="País" Type="nvarchar" Mode="In" />
+    <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+    <Parameter Name="PáginaPrincipal" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ProveedoresSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProveedor" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ProveedoresSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ProveedoresUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProveedor" Type="int" Mode="In" />
+    <Parameter Name="NombreCompañía" Type="nvarchar" Mode="In" />
+    <Parameter Name="Dirección" Type="nvarchar" Mode="In" />
+    <Parameter Name="Ciudad" Type="nvarchar" Mode="In" />
+    <Parameter Name="País" Type="nvarchar" Mode="In" />
+    <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+    <Parameter Name="PáginaPrincipal" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_resumenVentas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fechainicio" Type="smalldatetime" Mode="In" />
+    <Parameter Name="fechafinal" Type="smalldatetime" Mode="In" />
+  </Function>
+  <Function Name="usp_resumenVentasCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="anio" Type="int" Mode="In" />
+    <Parameter Name="mes" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_resumenVentasCruzadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_resumenVentasEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="anio" Type="int" Mode="In" />
+    <Parameter Name="mes" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_sysdiagramsDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagram_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_sysdiagramsSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagram_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_sysdiagramsSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="NegocioWebModelStoreContainer">
+    <EntitySet Name="Categorías" EntityType="Self.Categorías" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COMISIONES" EntityType="Self.COMISIONES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Compañías de envíos" EntityType="Self.Compañías de envíos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Detalles de pedidos" EntityType="Self.Detalles de pedidos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HISTORICOS" EntityType="Self.HISTORICOS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__COMISIONE__IDPED__5006DFF2" Association="Self.FK__COMISIONE__IDPED__5006DFF2">
+      <End Role="Pedidos" EntitySet="Pedidos" />
+      <End Role="COMISIONES" EntitySet="COMISIONES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detalles de pedidos_Pedidos" Association="Self.FK_Detalles de pedidos_Pedidos">
+      <End Role="Pedidos" EntitySet="Pedidos" />
+      <End Role="Detalles de pedidos" EntitySet="Detalles de pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detalles de pedidos_Productos" Association="Self.FK_Detalles de pedidos_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Detalles de pedidos" EntitySet="Detalles de pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedidos_Clientes" Association="Self.FK_Pedidos_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedidos_Compañías de envíos" Association="Self.FK_Pedidos_Compañías de envíos">
+      <End Role="Compañías de envíos" EntitySet="Compañías de envíos" />
+      <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedidos_Empleados" Association="Self.FK_Pedidos_Empleados">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Productos_Categorías" Association="Self.FK_Productos_Categorías">
+      <End Role="Categorías" EntitySet="Categorías" />
+      <End Role="Productos" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Productos_Proveedores" Association="Self.FK_Productos_Proveedores">
+      <End Role="Proveedores" EntitySet="Proveedores" />
+      <End Role="Productos" EntitySet="Productos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

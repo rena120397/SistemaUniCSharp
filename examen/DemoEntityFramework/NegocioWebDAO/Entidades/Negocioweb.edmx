@@ -1,0 +1,2248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NegocioWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categorías">
+          <Key>
+            <PropertyRef Name="IdCategoría" />
+          </Key>
+          <Property Name="IdCategoría" Type="int" Nullable="false" />
+          <Property Name="NombreCategoría" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NombreCompañía" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="NombreContacto" Type="nvarchar" MaxLength="30" />
+          <Property Name="CargoContacto" Type="nvarchar" MaxLength="30" />
+          <Property Name="Dirección" Type="nvarchar" MaxLength="60" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="15" />
+          <Property Name="País" Type="nvarchar" MaxLength="15" />
+          <Property Name="Teléfono" Type="nvarchar" MaxLength="24" />
+        </EntityType>
+        <EntityType Name="COMISIONES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MONTO" Type="money" />
+          <Property Name="FECHA" Type="date" />
+          <Property Name="IDPEDIDO" Type="int" />
+        </EntityType>
+        <EntityType Name="Compañías de envíos">
+          <Key>
+            <PropertyRef Name="IdCompañíaEnvíos" />
+          </Key>
+          <Property Name="IdCompañíaEnvíos" Type="int" Nullable="false" />
+          <Property Name="NombreCompañía" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Teléfono" Type="nvarchar" MaxLength="24" />
+        </EntityType>
+        <EntityType Name="Detalles de pedidos">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdPedido" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="PrecioUnidad" Type="money" Nullable="false" />
+          <Property Name="Cantidad" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="int" Nullable="false" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Cargo" Type="nvarchar" MaxLength="30" />
+          <Property Name="FechaNacimiento" Type="datetime" />
+          <Property Name="FechaContratación" Type="datetime" />
+          <Property Name="Dirección" Type="nvarchar" MaxLength="60" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="15" />
+          <Property Name="País" Type="nvarchar" MaxLength="15" />
+          <Property Name="TelDomicilio" Type="nvarchar" MaxLength="24" />
+          <Property Name="Foto" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="HISTORICOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="25" />
+          <Property Name="APELLIDOS" Type="nvarchar" MaxLength="50" />
+          <Property Name="ELIMINADO" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Pedidos">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+          </Key>
+          <Property Name="IdPedido" Type="int" Nullable="false" />
+          <Property Name="IdCliente" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="IdEmpleado" Type="int" />
+          <Property Name="FechaPedido" Type="datetime" />
+          <Property Name="FechaEntrega" Type="datetime" />
+          <Property Name="FormaEnvío" Type="int" />
+          <Property Name="Cargo" Type="money" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+          <Property Name="NombreProducto" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="IdProveedor" Type="int" />
+          <Property Name="IdCategoría" Type="int" />
+          <Property Name="CantidadPorUnidad" Type="nvarchar" MaxLength="20" />
+          <Property Name="PrecioUnidad" Type="money" />
+          <Property Name="UnidadesEnExistencia" Type="smallint" />
+          <Property Name="UnidadesEnPedido" Type="smallint" />
+          <Property Name="NivelNuevoPedido" Type="int" />
+          <Property Name="Suspendido" Type="bit" Nullable="false" />
+          <Property Name="foto" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="int" Nullable="false" />
+          <Property Name="NombreCompañía" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Dirección" Type="nvarchar" MaxLength="60" />
+          <Property Name="Ciudad" Type="nvarchar" MaxLength="15" />
+          <Property Name="País" Type="nvarchar" MaxLength="15" />
+          <Property Name="Teléfono" Type="nvarchar" MaxLength="24" />
+          <Property Name="PáginaPrincipal" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__COMISIONE__IDPED__5006DFF2">
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="0..1" />
+          <End Role="COMISIONES" Type="Self.COMISIONES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedidos">
+              <PropertyRef Name="IdPedido" />
+            </Principal>
+            <Dependent Role="COMISIONES">
+              <PropertyRef Name="IDPEDIDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalles de pedidos_Pedidos">
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Detalles de pedidos" Type="Self.Detalles de pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedidos">
+              <PropertyRef Name="IdPedido" />
+            </Principal>
+            <Dependent Role="Detalles de pedidos">
+              <PropertyRef Name="IdPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalles de pedidos_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Detalles de pedidos" Type="Self.Detalles de pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="Detalles de pedidos">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedidos_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedidos_Compañías de envíos">
+          <End Role="Compañías de envíos" Type="Self.Compañías de envíos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compañías de envíos">
+              <PropertyRef Name="IdCompañíaEnvíos" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="FormaEnvío" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedidos_Empleados">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="IdEmpleado" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_Categorías">
+          <End Role="Categorías" Type="Self.Categorías" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorías">
+              <PropertyRef Name="IdCategoría" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdCategoría" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="IdProveedor" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CAMBIOMONEDA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+          <Parameter Name="MONTO" Type="money" Mode="In" />
+          <Parameter Name="MONEDA" Type="varchar" Mode="In" />
+          <Parameter Name="TIPOCAMBIO" Type="money" Mode="In" />
+        </Function>
+        <Function Name="FN_DESCUENTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+          <Parameter Name="MONTO" Type="money" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="Fn_IGV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+          <Parameter Name="MONTO" Type="money" Mode="In" />
+          <Parameter Name="PORCENTAJE" Type="money" Mode="In" />
+        </Function>
+        <Function Name="Fn_PROMEDIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="N1" Type="int" Mode="In" />
+          <Parameter Name="N2" Type="int" Mode="In" />
+          <Parameter Name="N3" Type="int" Mode="In" />
+        </Function>
+        <Function Name="FN_SUELDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+          <Parameter Name="CARGO" Type="varchar" Mode="In" />
+          <Parameter Name="HORASTRAB" Type="int" Mode="In" />
+        </Function>
+        <Function Name="IGV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+          <Parameter Name="MONTO" Type="money" Mode="In" />
+          <Parameter Name="PORCENTAJE" Type="money" Mode="In" />
+        </Function>
+        <Function Name="NIVEL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="PROM" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_ActualizarStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipo" Type="int" Mode="In" />
+          <Parameter Name="idproducto" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_AGREGAEMPLEADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDEMPLEADO" Type="int" Mode="In" />
+          <Parameter Name="NOMBRE" Type="nvarchar" Mode="In" />
+          <Parameter Name="APELLIDOS" Type="nvarchar" Mode="In" />
+          <Parameter Name="CARGO" Type="nvarchar" Mode="In" />
+          <Parameter Name="FECHANACIMIENTO" Type="date" Mode="In" />
+          <Parameter Name="FECHACONTRATO" Type="date" Mode="In" />
+          <Parameter Name="RES" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="USP_BUSCAREMPLEADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDEMPLEADO" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_CategoríasDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCategoría" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_CategoríasInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCategoría" Type="int" Mode="In" />
+          <Parameter Name="NombreCategoría" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_CategoríasSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCategoría" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_CategoríasSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_CategoríasUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCategoría" Type="int" Mode="In" />
+          <Parameter Name="NombreCategoría" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ClientesDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ClientesInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+          <Parameter Name="NombreCompañía" Type="nvarchar" Mode="In" />
+          <Parameter Name="NombreContacto" Type="nvarchar" Mode="In" />
+          <Parameter Name="CargoContacto" Type="nvarchar" Mode="In" />
+          <Parameter Name="Dirección" Type="nvarchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="nvarchar" Mode="In" />
+          <Parameter Name="País" Type="nvarchar" Mode="In" />
+          <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ClientesSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ClientesSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_ClientesUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+          <Parameter Name="NombreCompañía" Type="nvarchar" Mode="In" />
+          <Parameter Name="NombreContacto" Type="nvarchar" Mode="In" />
+          <Parameter Name="CargoContacto" Type="nvarchar" Mode="In" />
+          <Parameter Name="Dirección" Type="nvarchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="nvarchar" Mode="In" />
+          <Parameter Name="País" Type="nvarchar" Mode="In" />
+          <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Compañías_de_envíosDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Compañías de envíosDelete">
+          <Parameter Name="IdCompañíaEnvíos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Compañías_de_envíosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Compañías de envíosInsert">
+          <Parameter Name="IdCompañíaEnvíos" Type="int" Mode="In" />
+          <Parameter Name="NombreCompañía" Type="nvarchar" Mode="In" />
+          <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Compañías_de_envíosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Compañías de envíosSelect">
+          <Parameter Name="IdCompañíaEnvíos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Compañías_de_envíosSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Compañías de envíosSelectAll" />
+        <Function Name="usp_Compañías_de_envíosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Compañías de envíosUpdate">
+          <Parameter Name="IdCompañíaEnvíos" Type="int" Mode="In" />
+          <Parameter Name="NombreCompañía" Type="nvarchar" Mode="In" />
+          <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Detalles_de_pedidosDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosDelete">
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Detalles_de_pedidosDeleteAllByIdPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosDeleteAllByIdPedido">
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Detalles_de_pedidosDeleteAllByIdProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosDeleteAllByIdProducto">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Detalles_de_pedidosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosInsert">
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="PrecioUnidad" Type="money" Mode="In" />
+          <Parameter Name="Cantidad" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="usp_Detalles_de_pedidosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosSelect">
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Detalles_de_pedidosSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosSelectAll" />
+        <Function Name="usp_Detalles_de_pedidosSelectAllByIdPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosSelectAllByIdPedido">
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Detalles_de_pedidosSelectAllByIdProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosSelectAllByIdProducto">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Detalles_de_pedidosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="usp_Detalles de pedidosUpdate">
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="PrecioUnidad" Type="money" Mode="In" />
+          <Parameter Name="Cantidad" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="usp_DetallesPedidoPorID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idpedido" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_EDITAEMPLEADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDEMPLEADO" Type="int" Mode="In" />
+          <Parameter Name="NOMBRE" Type="nvarchar" Mode="In" />
+          <Parameter Name="APELLIDOS" Type="nvarchar" Mode="In" />
+          <Parameter Name="CARGO" Type="nvarchar" Mode="In" />
+          <Parameter Name="FECHANACIMIENTO" Type="date" Mode="In" />
+          <Parameter Name="FECHACONTRATO" Type="date" Mode="In" />
+        </Function>
+        <Function Name="USP_ELIMINAEMPLEADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDEMPLEADO" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_EmpleadosDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_EmpleadosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+          <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Cargo" Type="nvarchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="datetime" Mode="In" />
+          <Parameter Name="FechaContratación" Type="datetime" Mode="In" />
+          <Parameter Name="Dirección" Type="nvarchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="nvarchar" Mode="In" />
+          <Parameter Name="País" Type="nvarchar" Mode="In" />
+          <Parameter Name="TelDomicilio" Type="nvarchar" Mode="In" />
+          <Parameter Name="Foto" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_EmpleadosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_EmpleadosSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_EmpleadosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+          <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Cargo" Type="nvarchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="datetime" Mode="In" />
+          <Parameter Name="FechaContratación" Type="datetime" Mode="In" />
+          <Parameter Name="Dirección" Type="nvarchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="nvarchar" Mode="In" />
+          <Parameter Name="País" Type="nvarchar" Mode="In" />
+          <Parameter Name="TelDomicilio" Type="nvarchar" Mode="In" />
+          <Parameter Name="Foto" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Listar_pedidosPorFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="smalldatetime" Mode="In" />
+          <Parameter Name="fechaFinal" Type="smalldatetime" Mode="In" />
+          <Parameter Name="cliente" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Listarproductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_PedidosDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PedidosDeleteAllByFormaEnvío" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FormaEnvío" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PedidosDeleteAllByIdCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_PedidosDeleteAllByIdEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PedidosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPedido" Type="int" Mode="InOut" />
+          <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+          <Parameter Name="FechaPedido" Type="datetime" Mode="In" />
+          <Parameter Name="FechaEntrega" Type="datetime" Mode="In" />
+          <Parameter Name="FormaEnvío" Type="int" Mode="In" />
+          <Parameter Name="Cargo" Type="money" Mode="In" />
+        </Function>
+        <Function Name="usp_pedidosPorFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="smalldatetime" Mode="In" />
+          <Parameter Name="fechaFinal" Type="smalldatetime" Mode="In" />
+          <Parameter Name="cliente" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_PedidosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PedidosSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_PedidosSelectAllByFormaEnvío" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FormaEnvío" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PedidosSelectAllByIdCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_PedidosSelectAllByIdEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_PedidosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+          <Parameter Name="IdCliente" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+          <Parameter Name="FechaPedido" Type="datetime" Mode="In" />
+          <Parameter Name="FechaEntrega" Type="datetime" Mode="In" />
+          <Parameter Name="FormaEnvío" Type="int" Mode="In" />
+          <Parameter Name="Cargo" Type="money" Mode="In" />
+        </Function>
+        <Function Name="usp_ProductoMasVendidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="anio" Type="int" Mode="In" />
+          <Parameter Name="mes" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_productosAgotados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="categoria" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ProductosDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ProductosDeleteAllByIdCategoría" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCategoría" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ProductosDeleteAllByIdProveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ProductosInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="NombreProducto" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+          <Parameter Name="IdCategoría" Type="int" Mode="In" />
+          <Parameter Name="CantidadPorUnidad" Type="nvarchar" Mode="In" />
+          <Parameter Name="PrecioUnidad" Type="money" Mode="In" />
+          <Parameter Name="UnidadesEnExistencia" Type="smallint" Mode="In" />
+          <Parameter Name="UnidadesEnPedido" Type="smallint" Mode="In" />
+          <Parameter Name="NivelNuevoPedido" Type="int" Mode="In" />
+          <Parameter Name="Suspendido" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="usp_productosPorNombre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ProductosSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ProductosSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_ProductosSelectAllByIdCategoría" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCategoría" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ProductosSelectAllByIdProveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ProductosUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProducto" Type="int" Mode="In" />
+          <Parameter Name="NombreProducto" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+          <Parameter Name="IdCategoría" Type="int" Mode="In" />
+          <Parameter Name="CantidadPorUnidad" Type="nvarchar" Mode="In" />
+          <Parameter Name="PrecioUnidad" Type="money" Mode="In" />
+          <Parameter Name="UnidadesEnExistencia" Type="smallint" Mode="In" />
+          <Parameter Name="UnidadesEnPedido" Type="smallint" Mode="In" />
+          <Parameter Name="NivelNuevoPedido" Type="int" Mode="In" />
+          <Parameter Name="Suspendido" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="usp_ProveedoresDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ProveedoresInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+          <Parameter Name="NombreCompañía" Type="nvarchar" Mode="In" />
+          <Parameter Name="Dirección" Type="nvarchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="nvarchar" Mode="In" />
+          <Parameter Name="País" Type="nvarchar" Mode="In" />
+          <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+          <Parameter Name="PáginaPrincipal" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_ProveedoresSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ProveedoresSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_ProveedoresUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+          <Parameter Name="NombreCompañía" Type="nvarchar" Mode="In" />
+          <Parameter Name="Dirección" Type="nvarchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="nvarchar" Mode="In" />
+          <Parameter Name="País" Type="nvarchar" Mode="In" />
+          <Parameter Name="Teléfono" Type="nvarchar" Mode="In" />
+          <Parameter Name="PáginaPrincipal" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_resumenVentas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechainicio" Type="smalldatetime" Mode="In" />
+          <Parameter Name="fechafinal" Type="smalldatetime" Mode="In" />
+        </Function>
+        <Function Name="usp_resumenVentasCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="anio" Type="int" Mode="In" />
+          <Parameter Name="mes" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_resumenVentasCruzadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_resumenVentasEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="anio" Type="int" Mode="In" />
+          <Parameter Name="mes" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_sysdiagramsDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagram_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_sysdiagramsSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagram_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_sysdiagramsSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="NegocioWebModelStoreContainer">
+          <EntitySet Name="Categorías" EntityType="Self.Categorías" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMISIONES" EntityType="Self.COMISIONES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compañías de envíos" EntityType="Self.Compañías de envíos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalles de pedidos" EntityType="Self.Detalles de pedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HISTORICOS" EntityType="Self.HISTORICOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__COMISIONE__IDPED__5006DFF2" Association="Self.FK__COMISIONE__IDPED__5006DFF2">
+            <End Role="Pedidos" EntitySet="Pedidos" />
+            <End Role="COMISIONES" EntitySet="COMISIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalles de pedidos_Pedidos" Association="Self.FK_Detalles de pedidos_Pedidos">
+            <End Role="Pedidos" EntitySet="Pedidos" />
+            <End Role="Detalles de pedidos" EntitySet="Detalles de pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalles de pedidos_Productos" Association="Self.FK_Detalles de pedidos_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Detalles de pedidos" EntitySet="Detalles de pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedidos_Clientes" Association="Self.FK_Pedidos_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedidos_Compañías de envíos" Association="Self.FK_Pedidos_Compañías de envíos">
+            <End Role="Compañías de envíos" EntitySet="Compañías de envíos" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedidos_Empleados" Association="Self.FK_Pedidos_Empleados">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Categorías" Association="Self.FK_Productos_Categorías">
+            <End Role="Categorías" EntitySet="Categorías" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Proveedores" Association="Self.FK_Productos_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NegocioWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categorías">
+          <Key>
+            <PropertyRef Name="IdCategoría" />
+          </Key>
+          <Property Name="IdCategoría" Type="Int32" Nullable="false" />
+          <Property Name="NombreCategoría" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Categorías" FromRole="Categorías" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NombreCompañía" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NombreContacto" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CargoContacto" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Dirección" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Ciudad" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="País" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Teléfono" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pedidos" Relationship="Self.FK_Pedidos_Clientes" FromRole="Clientes" ToRole="Pedidos" />
+        </EntityType>
+        <EntityType Name="COMISIONE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MONTO" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="FECHA" Type="DateTime" Precision="0" />
+          <Property Name="IDPEDIDO" Type="Int32" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK__COMISIONE__IDPED__5006DFF2" FromRole="COMISIONES" ToRole="Pedidos" />
+        </EntityType>
+        <EntityType Name="Compañías_de_envíos">
+          <Key>
+            <PropertyRef Name="IdCompañíaEnvíos" />
+          </Key>
+          <Property Name="IdCompañíaEnvíos" Type="Int32" Nullable="false" />
+          <Property Name="NombreCompañía" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Teléfono" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pedidos" Relationship="Self.FK_Pedidos_Compañías_de_envíos" FromRole="Compañías_de_envíos" ToRole="Pedidos" />
+        </EntityType>
+        <EntityType Name="Detalles_de_pedido">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdPedido" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="PrecioUnidad" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Cantidad" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Detalles_de_pedidos_Pedidos" FromRole="Detalles_de_pedidos" ToRole="Pedidos" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_Detalles_de_pedidos_Productos" FromRole="Detalles_de_pedidos" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cargo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="FechaContratación" Type="DateTime" Precision="3" />
+          <Property Name="Dirección" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Ciudad" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="País" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="TelDomicilio" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Foto" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pedidos" Relationship="Self.FK_Pedidos_Empleados" FromRole="Empleados" ToRole="Pedidos" />
+        </EntityType>
+        <EntityType Name="HISTORICO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ELIMINADO" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+          </Key>
+          <Property Name="IdPedido" Type="Int32" Nullable="false" />
+          <Property Name="IdCliente" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdEmpleado" Type="Int32" />
+          <Property Name="FechaPedido" Type="DateTime" Precision="3" />
+          <Property Name="FechaEntrega" Type="DateTime" Precision="3" />
+          <Property Name="FormaEnvío" Type="Int32" />
+          <Property Name="Cargo" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Pedidos_Clientes" FromRole="Pedidos" ToRole="Clientes" />
+          <NavigationProperty Name="COMISIONES" Relationship="Self.FK__COMISIONE__IDPED__5006DFF2" FromRole="Pedidos" ToRole="COMISIONES" />
+          <NavigationProperty Name="Compañías_de_envíos" Relationship="Self.FK_Pedidos_Compañías_de_envíos" FromRole="Pedidos" ToRole="Compañías_de_envíos" />
+          <NavigationProperty Name="Detalles_de_pedidos" Relationship="Self.FK_Detalles_de_pedidos_Pedidos" FromRole="Pedidos" ToRole="Detalles_de_pedidos" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Pedidos_Empleados" FromRole="Pedidos" ToRole="Empleados" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="NombreProducto" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdProveedor" Type="Int32" />
+          <Property Name="IdCategoría" Type="Int32" />
+          <Property Name="CantidadPorUnidad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PrecioUnidad" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UnidadesEnExistencia" Type="Int16" />
+          <Property Name="UnidadesEnPedido" Type="Int16" />
+          <Property Name="NivelNuevoPedido" Type="Int32" />
+          <Property Name="Suspendido" Type="Boolean" Nullable="false" />
+          <Property Name="foto" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Categorías" Relationship="Self.FK_Productos_Categorías" FromRole="Productos" ToRole="Categorías" />
+          <NavigationProperty Name="Detalles_de_pedidos" Relationship="Self.FK_Detalles_de_pedidos_Productos" FromRole="Productos" ToRole="Detalles_de_pedidos" />
+          <NavigationProperty Name="Proveedore" Relationship="Self.FK_Productos_Proveedores" FromRole="Productos" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="Proveedore">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+          <Property Name="NombreCompañía" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dirección" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Ciudad" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="País" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Teléfono" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="PáginaPrincipal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Proveedores" FromRole="Proveedores" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Productos_Categorías">
+          <End Role="Categorías" Type="Self.Categorías" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Productos" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorías">
+              <PropertyRef Name="IdCategoría" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdCategoría" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedidos_Clientes">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pedidos" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__COMISIONE__IDPED__5006DFF2">
+          <End Role="Pedidos" Type="Self.Pedido" Multiplicity="0..1" />
+          <End Role="COMISIONES" Type="Self.COMISIONE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedidos">
+              <PropertyRef Name="IdPedido" />
+            </Principal>
+            <Dependent Role="COMISIONES">
+              <PropertyRef Name="IDPEDIDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedidos_Compañías_de_envíos">
+          <End Role="Compañías_de_envíos" Type="Self.Compañías_de_envíos" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pedidos" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compañías_de_envíos">
+              <PropertyRef Name="IdCompañíaEnvíos" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="FormaEnvío" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalles_de_pedidos_Pedidos">
+          <End Role="Pedidos" Type="Self.Pedido" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Detalles_de_pedidos" Type="Self.Detalles_de_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedidos">
+              <PropertyRef Name="IdPedido" />
+            </Principal>
+            <Dependent Role="Detalles_de_pedidos">
+              <PropertyRef Name="IdPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalles_de_pedidos_Productos">
+          <End Role="Productos" Type="Self.Producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Detalles_de_pedidos" Type="Self.Detalles_de_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="Detalles_de_pedidos">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedidos_Empleados">
+          <End Role="Empleados" Type="Self.Empleado" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pedidos" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="IdEmpleado" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedore" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Productos" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="IdProveedor" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NegocioWebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categorías" EntityType="Self.Categorías" />
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+          <EntitySet Name="COMISIONES" EntityType="Self.COMISIONE" />
+          <EntitySet Name="Compañías_de_envíos" EntityType="Self.Compañías_de_envíos" />
+          <EntitySet Name="Detalles_de_pedidos" EntityType="Self.Detalles_de_pedido" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleado" />
+          <EntitySet Name="HISTORICOS" EntityType="Self.HISTORICO" />
+          <EntitySet Name="Pedidos" EntityType="Self.Pedido" />
+          <EntitySet Name="Productos" EntityType="Self.Producto" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedore" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_Productos_Categorías" Association="Self.FK_Productos_Categorías">
+            <End Role="Categorías" EntitySet="Categorías" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedidos_Clientes" Association="Self.FK_Pedidos_Clientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__COMISIONE__IDPED__5006DFF2" Association="Self.FK__COMISIONE__IDPED__5006DFF2">
+            <End Role="Pedidos" EntitySet="Pedidos" />
+            <End Role="COMISIONES" EntitySet="COMISIONES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedidos_Compañías_de_envíos" Association="Self.FK_Pedidos_Compañías_de_envíos">
+            <End Role="Compañías_de_envíos" EntitySet="Compañías_de_envíos" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalles_de_pedidos_Pedidos" Association="Self.FK_Detalles_de_pedidos_Pedidos">
+            <End Role="Pedidos" EntitySet="Pedidos" />
+            <End Role="Detalles_de_pedidos" EntitySet="Detalles_de_pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalles_de_pedidos_Productos" Association="Self.FK_Detalles_de_pedidos_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Detalles_de_pedidos" EntitySet="Detalles_de_pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedidos_Empleados" Association="Self.FK_Pedidos_Empleados">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Proveedores" Association="Self.FK_Productos_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="usp_ActualizarStock">
+            <Parameter Name="tipo" Mode="In" Type="Int32" />
+            <Parameter Name="idproducto" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_AGREGAEMPLEADO">
+            <Parameter Name="IDEMPLEADO" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="APELLIDOS" Mode="In" Type="String" />
+            <Parameter Name="CARGO" Mode="In" Type="String" />
+            <Parameter Name="FECHANACIMIENTO" Mode="In" Type="DateTime" />
+            <Parameter Name="FECHACONTRATO" Mode="In" Type="DateTime" />
+            <Parameter Name="RES" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_BUSCAREMPLEADO" ReturnType="Collection(NegocioWebModel.USP_BUSCAREMPLEADO_Result)">
+            <Parameter Name="IDEMPLEADO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CategoríasDelete">
+            <Parameter Name="IdCategoría" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CategoríasInsert">
+            <Parameter Name="IdCategoría" Mode="In" Type="Int32" />
+            <Parameter Name="NombreCategoría" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CategoríasSelect" ReturnType="Collection(NegocioWebModel.usp_CategoríasSelect_Result)">
+            <Parameter Name="IdCategoría" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CategoríasSelectAll" ReturnType="Collection(NegocioWebModel.usp_CategoríasSelectAll_Result)" />
+          <FunctionImport Name="usp_CategoríasUpdate">
+            <Parameter Name="IdCategoría" Mode="In" Type="Int32" />
+            <Parameter Name="NombreCategoría" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ClientesDelete">
+            <Parameter Name="IdCliente" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ClientesInsert">
+            <Parameter Name="IdCliente" Mode="In" Type="String" />
+            <Parameter Name="NombreCompañía" Mode="In" Type="String" />
+            <Parameter Name="NombreContacto" Mode="In" Type="String" />
+            <Parameter Name="CargoContacto" Mode="In" Type="String" />
+            <Parameter Name="Dirección" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+            <Parameter Name="País" Mode="In" Type="String" />
+            <Parameter Name="Teléfono" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ClientesSelect" ReturnType="Collection(NegocioWebModel.usp_ClientesSelect_Result)">
+            <Parameter Name="IdCliente" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ClientesSelectAll" ReturnType="Collection(NegocioWebModel.usp_ClientesSelectAll_Result)" />
+          <FunctionImport Name="usp_ClientesUpdate">
+            <Parameter Name="IdCliente" Mode="In" Type="String" />
+            <Parameter Name="NombreCompañía" Mode="In" Type="String" />
+            <Parameter Name="NombreContacto" Mode="In" Type="String" />
+            <Parameter Name="CargoContacto" Mode="In" Type="String" />
+            <Parameter Name="Dirección" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+            <Parameter Name="País" Mode="In" Type="String" />
+            <Parameter Name="Teléfono" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Compañías_de_envíosDelete">
+            <Parameter Name="IdCompañíaEnvíos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Compañías_de_envíosInsert">
+            <Parameter Name="IdCompañíaEnvíos" Mode="In" Type="Int32" />
+            <Parameter Name="NombreCompañía" Mode="In" Type="String" />
+            <Parameter Name="Teléfono" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Compañías_de_envíosSelect" ReturnType="Collection(NegocioWebModel.usp_Compañías_de_envíosSelect_Result)">
+            <Parameter Name="IdCompañíaEnvíos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Compañías_de_envíosSelectAll" ReturnType="Collection(NegocioWebModel.usp_Compañías_de_envíosSelectAll_Result)" />
+          <FunctionImport Name="usp_Compañías_de_envíosUpdate">
+            <Parameter Name="IdCompañíaEnvíos" Mode="In" Type="Int32" />
+            <Parameter Name="NombreCompañía" Mode="In" Type="String" />
+            <Parameter Name="Teléfono" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Detalles_de_pedidosDelete">
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Detalles_de_pedidosDeleteAllByIdPedido">
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Detalles_de_pedidosDeleteAllByIdProducto">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Detalles_de_pedidosInsert">
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="PrecioUnidad" Mode="In" Type="Decimal" />
+            <Parameter Name="Cantidad" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Detalles_de_pedidosSelect" ReturnType="Collection(NegocioWebModel.usp_Detalles_de_pedidosSelect_Result)">
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Detalles_de_pedidosSelectAll" ReturnType="Collection(NegocioWebModel.usp_Detalles_de_pedidosSelectAll_Result)" />
+          <FunctionImport Name="usp_Detalles_de_pedidosSelectAllByIdPedido" ReturnType="Collection(NegocioWebModel.usp_Detalles_de_pedidosSelectAllByIdPedido_Result)">
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Detalles_de_pedidosSelectAllByIdProducto" ReturnType="Collection(NegocioWebModel.usp_Detalles_de_pedidosSelectAllByIdProducto_Result)">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Detalles_de_pedidosUpdate">
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="PrecioUnidad" Mode="In" Type="Decimal" />
+            <Parameter Name="Cantidad" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="usp_DetallesPedidoPorID" ReturnType="Collection(NegocioWebModel.usp_DetallesPedidoPorID_Result)">
+            <Parameter Name="idpedido" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_EDITAEMPLEADO">
+            <Parameter Name="IDEMPLEADO" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="APELLIDOS" Mode="In" Type="String" />
+            <Parameter Name="CARGO" Mode="In" Type="String" />
+            <Parameter Name="FECHANACIMIENTO" Mode="In" Type="DateTime" />
+            <Parameter Name="FECHACONTRATO" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ELIMINAEMPLEADO">
+            <Parameter Name="IDEMPLEADO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_EmpleadosDelete">
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_EmpleadosInsert">
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Cargo" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaContratación" Mode="In" Type="DateTime" />
+            <Parameter Name="Dirección" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+            <Parameter Name="País" Mode="In" Type="String" />
+            <Parameter Name="TelDomicilio" Mode="In" Type="String" />
+            <Parameter Name="Foto" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_EmpleadosSelect" ReturnType="Collection(NegocioWebModel.usp_EmpleadosSelect_Result)">
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_EmpleadosSelectAll" ReturnType="Collection(NegocioWebModel.usp_EmpleadosSelectAll_Result)" />
+          <FunctionImport Name="usp_EmpleadosUpdate">
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Cargo" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaContratación" Mode="In" Type="DateTime" />
+            <Parameter Name="Dirección" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+            <Parameter Name="País" Mode="In" Type="String" />
+            <Parameter Name="TelDomicilio" Mode="In" Type="String" />
+            <Parameter Name="Foto" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Listar_pedidosPorFecha" ReturnType="Collection(NegocioWebModel.usp_Listar_pedidosPorFecha_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+            <Parameter Name="cliente" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Listarproductos" ReturnType="Collection(NegocioWebModel.usp_Listarproductos_Result)" />
+          <FunctionImport Name="usp_PedidosDelete">
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PedidosDeleteAllByFormaEnvío">
+            <Parameter Name="FormaEnvío" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PedidosDeleteAllByIdCliente">
+            <Parameter Name="IdCliente" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PedidosDeleteAllByIdEmpleado">
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PedidosInsert">
+            <Parameter Name="IdPedido" Mode="InOut" Type="Int32" />
+            <Parameter Name="IdCliente" Mode="In" Type="String" />
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+            <Parameter Name="FechaPedido" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaEntrega" Mode="In" Type="DateTime" />
+            <Parameter Name="FormaEnvío" Mode="In" Type="Int32" />
+            <Parameter Name="Cargo" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_pedidosPorFecha" ReturnType="Collection(NegocioWebModel.usp_pedidosPorFecha_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFinal" Mode="In" Type="DateTime" />
+            <Parameter Name="cliente" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PedidosSelect" ReturnType="Collection(NegocioWebModel.usp_PedidosSelect_Result)">
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PedidosSelectAll" ReturnType="Collection(NegocioWebModel.usp_PedidosSelectAll_Result)" />
+          <FunctionImport Name="usp_PedidosSelectAllByFormaEnvío" ReturnType="Collection(NegocioWebModel.usp_PedidosSelectAllByFormaEnvío_Result)">
+            <Parameter Name="FormaEnvío" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PedidosSelectAllByIdCliente" ReturnType="Collection(NegocioWebModel.usp_PedidosSelectAllByIdCliente_Result)">
+            <Parameter Name="IdCliente" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PedidosSelectAllByIdEmpleado" ReturnType="Collection(NegocioWebModel.usp_PedidosSelectAllByIdEmpleado_Result)">
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PedidosUpdate">
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+            <Parameter Name="IdCliente" Mode="In" Type="String" />
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+            <Parameter Name="FechaPedido" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaEntrega" Mode="In" Type="DateTime" />
+            <Parameter Name="FormaEnvío" Mode="In" Type="Int32" />
+            <Parameter Name="Cargo" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProductoMasVendidos" ReturnType="Collection(NegocioWebModel.usp_ProductoMasVendidos_Result)">
+            <Parameter Name="anio" Mode="In" Type="Int32" />
+            <Parameter Name="mes" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_productosAgotados" ReturnType="Collection(NegocioWebModel.usp_productosAgotados_Result)">
+            <Parameter Name="categoria" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProductosDelete">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProductosDeleteAllByIdCategoría">
+            <Parameter Name="IdCategoría" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProductosDeleteAllByIdProveedor">
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProductosInsert">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="NombreProducto" Mode="In" Type="String" />
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+            <Parameter Name="IdCategoría" Mode="In" Type="Int32" />
+            <Parameter Name="CantidadPorUnidad" Mode="In" Type="String" />
+            <Parameter Name="PrecioUnidad" Mode="In" Type="Decimal" />
+            <Parameter Name="UnidadesEnExistencia" Mode="In" Type="Int16" />
+            <Parameter Name="UnidadesEnPedido" Mode="In" Type="Int16" />
+            <Parameter Name="NivelNuevoPedido" Mode="In" Type="Int32" />
+            <Parameter Name="Suspendido" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="usp_productosPorNombre" ReturnType="Collection(NegocioWebModel.usp_productosPorNombre_Result)">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProductosSelect" ReturnType="Collection(NegocioWebModel.usp_ProductosSelect_Result)">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProductosSelectAll" ReturnType="Collection(NegocioWebModel.usp_ProductosSelectAll_Result)" />
+          <FunctionImport Name="usp_ProductosSelectAllByIdCategoría" ReturnType="Collection(NegocioWebModel.usp_ProductosSelectAllByIdCategoría_Result)">
+            <Parameter Name="IdCategoría" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProductosSelectAllByIdProveedor" ReturnType="Collection(NegocioWebModel.usp_ProductosSelectAllByIdProveedor_Result)">
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProductosUpdate">
+            <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+            <Parameter Name="NombreProducto" Mode="In" Type="String" />
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+            <Parameter Name="IdCategoría" Mode="In" Type="Int32" />
+            <Parameter Name="CantidadPorUnidad" Mode="In" Type="String" />
+            <Parameter Name="PrecioUnidad" Mode="In" Type="Decimal" />
+            <Parameter Name="UnidadesEnExistencia" Mode="In" Type="Int16" />
+            <Parameter Name="UnidadesEnPedido" Mode="In" Type="Int16" />
+            <Parameter Name="NivelNuevoPedido" Mode="In" Type="Int32" />
+            <Parameter Name="Suspendido" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProveedoresDelete">
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProveedoresInsert">
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+            <Parameter Name="NombreCompañía" Mode="In" Type="String" />
+            <Parameter Name="Dirección" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+            <Parameter Name="País" Mode="In" Type="String" />
+            <Parameter Name="Teléfono" Mode="In" Type="String" />
+            <Parameter Name="PáginaPrincipal" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProveedoresSelect" ReturnType="Collection(NegocioWebModel.usp_ProveedoresSelect_Result)">
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProveedoresSelectAll" ReturnType="Collection(NegocioWebModel.usp_ProveedoresSelectAll_Result)" />
+          <FunctionImport Name="usp_ProveedoresUpdate">
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+            <Parameter Name="NombreCompañía" Mode="In" Type="String" />
+            <Parameter Name="Dirección" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+            <Parameter Name="País" Mode="In" Type="String" />
+            <Parameter Name="Teléfono" Mode="In" Type="String" />
+            <Parameter Name="PáginaPrincipal" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_resumenVentas" ReturnType="Collection(NegocioWebModel.usp_resumenVentas_Result)">
+            <Parameter Name="fechainicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechafinal" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="usp_resumenVentasCliente" ReturnType="Collection(NegocioWebModel.usp_resumenVentasCliente_Result)">
+            <Parameter Name="anio" Mode="In" Type="Int32" />
+            <Parameter Name="mes" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_resumenVentasCruzadas" ReturnType="Collection(NegocioWebModel.usp_resumenVentasCruzadas_Result)" />
+          <FunctionImport Name="usp_resumenVentasEmpleado" ReturnType="Collection(NegocioWebModel.usp_resumenVentasEmpleado_Result)">
+            <Parameter Name="anio" Mode="In" Type="Int32" />
+            <Parameter Name="mes" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_sysdiagramsDelete">
+            <Parameter Name="diagram_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_sysdiagramsSelect" ReturnType="Collection(NegocioWebModel.usp_sysdiagramsSelect_Result)">
+            <Parameter Name="diagram_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_sysdiagramsSelectAll" ReturnType="Collection(NegocioWebModel.usp_sysdiagramsSelectAll_Result)" />
+        </EntityContainer>
+        <ComplexType Name="USP_BUSCAREMPLEADO_Result">
+          <Property Type="Int32" Name="IdEmpleado" Nullable="false" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Cargo" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaContratación" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Dirección" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="País" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="TelDomicilio" Nullable="true" MaxLength="24" />
+          <Property Type="String" Name="Foto" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="usp_CategoríasSelect_Result">
+          <Property Type="Int32" Name="IdCategoría" Nullable="false" />
+          <Property Type="String" Name="NombreCategoría" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="usp_CategoríasSelectAll_Result">
+          <Property Type="Int32" Name="IdCategoría" Nullable="false" />
+          <Property Type="String" Name="NombreCategoría" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="usp_ClientesSelect_Result">
+          <Property Type="String" Name="IdCliente" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="NombreCompañía" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="NombreContacto" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CargoContacto" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Dirección" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="País" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Teléfono" Nullable="true" MaxLength="24" />
+        </ComplexType>
+        <ComplexType Name="usp_ClientesSelectAll_Result">
+          <Property Type="String" Name="IdCliente" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="NombreCompañía" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="NombreContacto" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CargoContacto" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Dirección" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="País" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Teléfono" Nullable="true" MaxLength="24" />
+        </ComplexType>
+        <ComplexType Name="usp_Compañías_de_envíosSelect_Result">
+          <Property Type="Int32" Name="IdCompañíaEnvíos" Nullable="false" />
+          <Property Type="String" Name="NombreCompañía" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Teléfono" Nullable="true" MaxLength="24" />
+        </ComplexType>
+        <ComplexType Name="usp_Compañías_de_envíosSelectAll_Result">
+          <Property Type="Int32" Name="IdCompañíaEnvíos" Nullable="false" />
+          <Property Type="String" Name="NombreCompañía" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Teléfono" Nullable="true" MaxLength="24" />
+        </ComplexType>
+        <ComplexType Name="usp_Detalles_de_pedidosSelect_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="false" Precision="19" />
+          <Property Type="Int16" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_Detalles_de_pedidosSelectAll_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="false" Precision="19" />
+          <Property Type="Int16" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_Detalles_de_pedidosSelectAllByIdPedido_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="false" Precision="19" />
+          <Property Type="Int16" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_Detalles_de_pedidosSelectAllByIdProducto_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="false" Precision="19" />
+          <Property Type="Int16" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_DetallesPedidoPorID_Result">
+          <Property Type="Int16" Name="Cantidad" Nullable="false" />
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="40" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="usp_EmpleadosSelect_Result">
+          <Property Type="Int32" Name="IdEmpleado" Nullable="false" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Cargo" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaContratación" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Dirección" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="País" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="TelDomicilio" Nullable="true" MaxLength="24" />
+          <Property Type="String" Name="Foto" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="usp_EmpleadosSelectAll_Result">
+          <Property Type="Int32" Name="IdEmpleado" Nullable="false" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Cargo" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaContratación" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Dirección" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="País" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="TelDomicilio" Nullable="true" MaxLength="24" />
+          <Property Type="String" Name="Foto" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="usp_Listar_pedidosPorFecha_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="String" Name="FechaPedido" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="FechaEntrega" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="Cargo" Nullable="true" Precision="19" />
+          <Property Type="String" Name="Cliente" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Envios" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Vendedor" Nullable="false" MaxLength="31" />
+        </ComplexType>
+        <ComplexType Name="usp_Listarproductos_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="40" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="true" Precision="19" />
+          <Property Type="String" Name="CantidadPorUnidad" Nullable="true" MaxLength="20" />
+          <Property Type="Int16" Name="Stock" Nullable="true" />
+          <Property Type="String" Name="Categoria" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="foto" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="usp_pedidosPorFecha_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="String" Name="FechaPedido" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="FechaEntrega" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="Cargo" Nullable="true" Precision="19" />
+          <Property Type="String" Name="Cliente" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Envios" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Vendedor" Nullable="false" MaxLength="32" />
+        </ComplexType>
+        <ComplexType Name="usp_PedidosSelect_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Cargo" Nullable="true" Precision="19" />
+          <Property Type="String" Name="NombreCompañía" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="NombreContacto" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CargoContacto" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Dirección" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Vendedor" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="usp_PedidosSelectAll_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="String" Name="IdCliente" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="IdEmpleado" Nullable="true" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="FormaEnvío" Nullable="true" />
+          <Property Type="Decimal" Name="Cargo" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="usp_PedidosSelectAllByFormaEnvío_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="String" Name="IdCliente" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="IdEmpleado" Nullable="true" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="FormaEnvío" Nullable="true" />
+          <Property Type="Decimal" Name="Cargo" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="usp_PedidosSelectAllByIdCliente_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="String" Name="IdCliente" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="IdEmpleado" Nullable="true" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="FormaEnvío" Nullable="true" />
+          <Property Type="Decimal" Name="Cargo" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="usp_PedidosSelectAllByIdEmpleado_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="String" Name="IdCliente" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="IdEmpleado" Nullable="true" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="FormaEnvío" Nullable="true" />
+          <Property Type="Decimal" Name="Cargo" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="usp_ProductoMasVendidos_Result">
+          <Property Type="String" Name="Nombreproducto" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="Total" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_productosAgotados_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="40" />
+          <Property Type="Int16" Name="Stock" Nullable="true" />
+          <Property Type="String" Name="CantidadPorUnidad" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="true" Precision="19" />
+          <Property Type="String" Name="Categoria" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Proveedor" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="usp_productosPorNombre_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="40" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="true" Precision="19" />
+          <Property Type="String" Name="CantidadPorUnidad" Nullable="true" MaxLength="20" />
+          <Property Type="Int16" Name="Stock" Nullable="true" />
+          <Property Type="String" Name="Categoria" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="foto" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="usp_ProductosSelect_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="IdProveedor" Nullable="true" />
+          <Property Type="Int32" Name="IdCategoría" Nullable="true" />
+          <Property Type="String" Name="CantidadPorUnidad" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="true" Precision="19" />
+          <Property Type="Int16" Name="UnidadesEnExistencia" Nullable="true" />
+          <Property Type="Int16" Name="UnidadesEnPedido" Nullable="true" />
+          <Property Type="Int32" Name="NivelNuevoPedido" Nullable="true" />
+          <Property Type="Boolean" Name="Suspendido" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_ProductosSelectAll_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="IdProveedor" Nullable="true" />
+          <Property Type="Int32" Name="IdCategoría" Nullable="true" />
+          <Property Type="String" Name="CantidadPorUnidad" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="true" Precision="19" />
+          <Property Type="Int16" Name="UnidadesEnExistencia" Nullable="true" />
+          <Property Type="Int16" Name="UnidadesEnPedido" Nullable="true" />
+          <Property Type="Int32" Name="NivelNuevoPedido" Nullable="true" />
+          <Property Type="Boolean" Name="Suspendido" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_ProductosSelectAllByIdCategoría_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="IdProveedor" Nullable="true" />
+          <Property Type="Int32" Name="IdCategoría" Nullable="true" />
+          <Property Type="String" Name="CantidadPorUnidad" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="true" Precision="19" />
+          <Property Type="Int16" Name="UnidadesEnExistencia" Nullable="true" />
+          <Property Type="Int16" Name="UnidadesEnPedido" Nullable="true" />
+          <Property Type="Int32" Name="NivelNuevoPedido" Nullable="true" />
+          <Property Type="Boolean" Name="Suspendido" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_ProductosSelectAllByIdProveedor_Result">
+          <Property Type="Int32" Name="IdProducto" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="IdProveedor" Nullable="true" />
+          <Property Type="Int32" Name="IdCategoría" Nullable="true" />
+          <Property Type="String" Name="CantidadPorUnidad" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="PrecioUnidad" Nullable="true" Precision="19" />
+          <Property Type="Int16" Name="UnidadesEnExistencia" Nullable="true" />
+          <Property Type="Int16" Name="UnidadesEnPedido" Nullable="true" />
+          <Property Type="Int32" Name="NivelNuevoPedido" Nullable="true" />
+          <Property Type="Boolean" Name="Suspendido" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_ProveedoresSelect_Result">
+          <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+          <Property Type="String" Name="NombreCompañía" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Dirección" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="País" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Teléfono" Nullable="true" MaxLength="24" />
+          <Property Type="String" Name="PáginaPrincipal" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_ProveedoresSelectAll_Result">
+          <Property Type="Int32" Name="IdProveedor" Nullable="false" />
+          <Property Type="String" Name="NombreCompañía" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Dirección" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Ciudad" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="País" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Teléfono" Nullable="true" MaxLength="24" />
+          <Property Type="String" Name="PáginaPrincipal" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_resumenVentas_Result">
+          <Property Type="String" Name="FechaVenta" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="usp_resumenVentasCliente_Result">
+          <Property Type="String" Name="Cliente" Nullable="false" MaxLength="40" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="usp_resumenVentasCruzadas_Result">
+          <Property Type="Int32" Name="Anual" Nullable="true" />
+          <Property Type="String" Name="Cliente" Nullable="false" MaxLength="40" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="usp_resumenVentasEmpleado_Result">
+          <Property Type="String" Name="Vendedor" Nullable="false" MaxLength="31" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="usp_sysdiagramsSelect_Result">
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" />
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_sysdiagramsSelectAll_Result">
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" />
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NegocioWebModelStoreContainer" CdmEntityContainer="NegocioWebEntities">
+          <EntitySetMapping Name="Categorías">
+            <EntityTypeMapping TypeName="NegocioWebModel.Categorías">
+              <MappingFragment StoreEntitySet="Categorías">
+                <ScalarProperty Name="IdCategoría" ColumnName="IdCategoría" />
+                <ScalarProperty Name="NombreCategoría" ColumnName="NombreCategoría" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="NegocioWebModel.Cliente">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="NombreCompañía" ColumnName="NombreCompañía" />
+                <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
+                <ScalarProperty Name="CargoContacto" ColumnName="CargoContacto" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="País" ColumnName="País" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMISIONES">
+            <EntityTypeMapping TypeName="NegocioWebModel.COMISIONE">
+              <MappingFragment StoreEntitySet="COMISIONES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="IDPEDIDO" ColumnName="IDPEDIDO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compañías_de_envíos">
+            <EntityTypeMapping TypeName="NegocioWebModel.Compañías_de_envíos">
+              <MappingFragment StoreEntitySet="Compañías de envíos">
+                <ScalarProperty Name="IdCompañíaEnvíos" ColumnName="IdCompañíaEnvíos" />
+                <ScalarProperty Name="NombreCompañía" ColumnName="NombreCompañía" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalles_de_pedidos">
+            <EntityTypeMapping TypeName="NegocioWebModel.Detalles_de_pedido">
+              <MappingFragment StoreEntitySet="Detalles de pedidos">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleados">
+            <EntityTypeMapping TypeName="NegocioWebModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="FechaContratación" ColumnName="FechaContratación" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="País" ColumnName="País" />
+                <ScalarProperty Name="TelDomicilio" ColumnName="TelDomicilio" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HISTORICOS">
+            <EntityTypeMapping TypeName="NegocioWebModel.HISTORICO">
+              <MappingFragment StoreEntitySet="HISTORICOS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="ELIMINADO" ColumnName="ELIMINADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedidos">
+            <EntityTypeMapping TypeName="NegocioWebModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedidos">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="FormaEnvío" ColumnName="FormaEnvío" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="NegocioWebModel.Producto">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="IdCategoría" ColumnName="IdCategoría" />
+                <ScalarProperty Name="CantidadPorUnidad" ColumnName="CantidadPorUnidad" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="UnidadesEnExistencia" ColumnName="UnidadesEnExistencia" />
+                <ScalarProperty Name="UnidadesEnPedido" ColumnName="UnidadesEnPedido" />
+                <ScalarProperty Name="NivelNuevoPedido" ColumnName="NivelNuevoPedido" />
+                <ScalarProperty Name="Suspendido" ColumnName="Suspendido" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedores">
+            <EntityTypeMapping TypeName="NegocioWebModel.Proveedore">
+              <MappingFragment StoreEntitySet="Proveedores">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="NombreCompañía" ColumnName="NombreCompañía" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="País" ColumnName="País" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+                <ScalarProperty Name="PáginaPrincipal" ColumnName="PáginaPrincipal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NegocioWebModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="NegocioWebModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="NegocioWebModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="NegocioWebModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="NegocioWebModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="NegocioWebModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="NegocioWebModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="NegocioWebModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="usp_ActualizarStock" FunctionName="NegocioWebModel.Store.usp_ActualizarStock" />
+          <FunctionImportMapping FunctionImportName="USP_AGREGAEMPLEADO" FunctionName="NegocioWebModel.Store.USP_AGREGAEMPLEADO" />
+          <FunctionImportMapping FunctionImportName="USP_BUSCAREMPLEADO" FunctionName="NegocioWebModel.Store.USP_BUSCAREMPLEADO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.USP_BUSCAREMPLEADO_Result">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="FechaContratación" ColumnName="FechaContratación" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="País" ColumnName="País" />
+                <ScalarProperty Name="TelDomicilio" ColumnName="TelDomicilio" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CategoríasDelete" FunctionName="NegocioWebModel.Store.usp_CategoríasDelete" />
+          <FunctionImportMapping FunctionImportName="usp_CategoríasInsert" FunctionName="NegocioWebModel.Store.usp_CategoríasInsert" />
+          <FunctionImportMapping FunctionImportName="usp_CategoríasSelect" FunctionName="NegocioWebModel.Store.usp_CategoríasSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_CategoríasSelect_Result">
+                <ScalarProperty Name="IdCategoría" ColumnName="IdCategoría" />
+                <ScalarProperty Name="NombreCategoría" ColumnName="NombreCategoría" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CategoríasSelectAll" FunctionName="NegocioWebModel.Store.usp_CategoríasSelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_CategoríasSelectAll_Result">
+                <ScalarProperty Name="IdCategoría" ColumnName="IdCategoría" />
+                <ScalarProperty Name="NombreCategoría" ColumnName="NombreCategoría" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CategoríasUpdate" FunctionName="NegocioWebModel.Store.usp_CategoríasUpdate" />
+          <FunctionImportMapping FunctionImportName="usp_ClientesDelete" FunctionName="NegocioWebModel.Store.usp_ClientesDelete" />
+          <FunctionImportMapping FunctionImportName="usp_ClientesInsert" FunctionName="NegocioWebModel.Store.usp_ClientesInsert" />
+          <FunctionImportMapping FunctionImportName="usp_ClientesSelect" FunctionName="NegocioWebModel.Store.usp_ClientesSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_ClientesSelect_Result">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="NombreCompañía" ColumnName="NombreCompañía" />
+                <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
+                <ScalarProperty Name="CargoContacto" ColumnName="CargoContacto" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="País" ColumnName="País" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ClientesSelectAll" FunctionName="NegocioWebModel.Store.usp_ClientesSelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_ClientesSelectAll_Result">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="NombreCompañía" ColumnName="NombreCompañía" />
+                <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
+                <ScalarProperty Name="CargoContacto" ColumnName="CargoContacto" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="País" ColumnName="País" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ClientesUpdate" FunctionName="NegocioWebModel.Store.usp_ClientesUpdate" />
+          <FunctionImportMapping FunctionImportName="usp_Compañías_de_envíosDelete" FunctionName="NegocioWebModel.Store.usp_Compañías_de_envíosDelete" />
+          <FunctionImportMapping FunctionImportName="usp_Compañías_de_envíosInsert" FunctionName="NegocioWebModel.Store.usp_Compañías_de_envíosInsert" />
+          <FunctionImportMapping FunctionImportName="usp_Compañías_de_envíosSelect" FunctionName="NegocioWebModel.Store.usp_Compañías_de_envíosSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_Compañías_de_envíosSelect_Result">
+                <ScalarProperty Name="IdCompañíaEnvíos" ColumnName="IdCompañíaEnvíos" />
+                <ScalarProperty Name="NombreCompañía" ColumnName="NombreCompañía" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Compañías_de_envíosSelectAll" FunctionName="NegocioWebModel.Store.usp_Compañías_de_envíosSelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_Compañías_de_envíosSelectAll_Result">
+                <ScalarProperty Name="IdCompañíaEnvíos" ColumnName="IdCompañíaEnvíos" />
+                <ScalarProperty Name="NombreCompañía" ColumnName="NombreCompañía" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Compañías_de_envíosUpdate" FunctionName="NegocioWebModel.Store.usp_Compañías_de_envíosUpdate" />
+          <FunctionImportMapping FunctionImportName="usp_Detalles_de_pedidosDelete" FunctionName="NegocioWebModel.Store.usp_Detalles_de_pedidosDelete" />
+          <FunctionImportMapping FunctionImportName="usp_Detalles_de_pedidosDeleteAllByIdPedido" FunctionName="NegocioWebModel.Store.usp_Detalles_de_pedidosDeleteAllByIdPedido" />
+          <FunctionImportMapping FunctionImportName="usp_Detalles_de_pedidosDeleteAllByIdProducto" FunctionName="NegocioWebModel.Store.usp_Detalles_de_pedidosDeleteAllByIdProducto" />
+          <FunctionImportMapping FunctionImportName="usp_Detalles_de_pedidosInsert" FunctionName="NegocioWebModel.Store.usp_Detalles_de_pedidosInsert" />
+          <FunctionImportMapping FunctionImportName="usp_Detalles_de_pedidosSelect" FunctionName="NegocioWebModel.Store.usp_Detalles_de_pedidosSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_Detalles_de_pedidosSelect_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Detalles_de_pedidosSelectAll" FunctionName="NegocioWebModel.Store.usp_Detalles_de_pedidosSelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_Detalles_de_pedidosSelectAll_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Detalles_de_pedidosSelectAllByIdPedido" FunctionName="NegocioWebModel.Store.usp_Detalles_de_pedidosSelectAllByIdPedido">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_Detalles_de_pedidosSelectAllByIdPedido_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Detalles_de_pedidosSelectAllByIdProducto" FunctionName="NegocioWebModel.Store.usp_Detalles_de_pedidosSelectAllByIdProducto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_Detalles_de_pedidosSelectAllByIdProducto_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Detalles_de_pedidosUpdate" FunctionName="NegocioWebModel.Store.usp_Detalles_de_pedidosUpdate" />
+          <FunctionImportMapping FunctionImportName="usp_DetallesPedidoPorID" FunctionName="NegocioWebModel.Store.usp_DetallesPedidoPorID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_DetallesPedidoPorID_Result">
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_EDITAEMPLEADO" FunctionName="NegocioWebModel.Store.USP_EDITAEMPLEADO" />
+          <FunctionImportMapping FunctionImportName="USP_ELIMINAEMPLEADO" FunctionName="NegocioWebModel.Store.USP_ELIMINAEMPLEADO" />
+          <FunctionImportMapping FunctionImportName="usp_EmpleadosDelete" FunctionName="NegocioWebModel.Store.usp_EmpleadosDelete" />
+          <FunctionImportMapping FunctionImportName="usp_EmpleadosInsert" FunctionName="NegocioWebModel.Store.usp_EmpleadosInsert" />
+          <FunctionImportMapping FunctionImportName="usp_EmpleadosSelect" FunctionName="NegocioWebModel.Store.usp_EmpleadosSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_EmpleadosSelect_Result">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="FechaContratación" ColumnName="FechaContratación" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="País" ColumnName="País" />
+                <ScalarProperty Name="TelDomicilio" ColumnName="TelDomicilio" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_EmpleadosSelectAll" FunctionName="NegocioWebModel.Store.usp_EmpleadosSelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_EmpleadosSelectAll_Result">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="FechaContratación" ColumnName="FechaContratación" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="País" ColumnName="País" />
+                <ScalarProperty Name="TelDomicilio" ColumnName="TelDomicilio" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_EmpleadosUpdate" FunctionName="NegocioWebModel.Store.usp_EmpleadosUpdate" />
+          <FunctionImportMapping FunctionImportName="usp_Listar_pedidosPorFecha" FunctionName="NegocioWebModel.Store.usp_Listar_pedidosPorFecha">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_Listar_pedidosPorFecha_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Envios" ColumnName="Envios" />
+                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Listarproductos" FunctionName="NegocioWebModel.Store.usp_Listarproductos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_Listarproductos_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="CantidadPorUnidad" ColumnName="CantidadPorUnidad" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PedidosDelete" FunctionName="NegocioWebModel.Store.usp_PedidosDelete" />
+          <FunctionImportMapping FunctionImportName="usp_PedidosDeleteAllByFormaEnvío" FunctionName="NegocioWebModel.Store.usp_PedidosDeleteAllByFormaEnvío" />
+          <FunctionImportMapping FunctionImportName="usp_PedidosDeleteAllByIdCliente" FunctionName="NegocioWebModel.Store.usp_PedidosDeleteAllByIdCliente" />
+          <FunctionImportMapping FunctionImportName="usp_PedidosDeleteAllByIdEmpleado" FunctionName="NegocioWebModel.Store.usp_PedidosDeleteAllByIdEmpleado" />
+          <FunctionImportMapping FunctionImportName="usp_PedidosInsert" FunctionName="NegocioWebModel.Store.usp_PedidosInsert" />
+          <FunctionImportMapping FunctionImportName="usp_pedidosPorFecha" FunctionName="NegocioWebModel.Store.usp_pedidosPorFecha">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_pedidosPorFecha_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Envios" ColumnName="Envios" />
+                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PedidosSelect" FunctionName="NegocioWebModel.Store.usp_PedidosSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_PedidosSelect_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="NombreCompañía" ColumnName="NombreCompañía" />
+                <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
+                <ScalarProperty Name="CargoContacto" ColumnName="CargoContacto" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PedidosSelectAll" FunctionName="NegocioWebModel.Store.usp_PedidosSelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_PedidosSelectAll_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="FormaEnvío" ColumnName="FormaEnvío" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PedidosSelectAllByFormaEnvío" FunctionName="NegocioWebModel.Store.usp_PedidosSelectAllByFormaEnvío">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_PedidosSelectAllByFormaEnvío_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="FormaEnvío" ColumnName="FormaEnvío" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PedidosSelectAllByIdCliente" FunctionName="NegocioWebModel.Store.usp_PedidosSelectAllByIdCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_PedidosSelectAllByIdCliente_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="FormaEnvío" ColumnName="FormaEnvío" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PedidosSelectAllByIdEmpleado" FunctionName="NegocioWebModel.Store.usp_PedidosSelectAllByIdEmpleado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_PedidosSelectAllByIdEmpleado_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="FormaEnvío" ColumnName="FormaEnvío" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_PedidosUpdate" FunctionName="NegocioWebModel.Store.usp_PedidosUpdate" />
+          <FunctionImportMapping FunctionImportName="usp_ProductoMasVendidos" FunctionName="NegocioWebModel.Store.usp_ProductoMasVendidos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_ProductoMasVendidos_Result">
+                <ScalarProperty Name="Nombreproducto" ColumnName="Nombreproducto" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_productosAgotados" FunctionName="NegocioWebModel.Store.usp_productosAgotados">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_productosAgotados_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="CantidadPorUnidad" ColumnName="CantidadPorUnidad" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ProductosDelete" FunctionName="NegocioWebModel.Store.usp_ProductosDelete" />
+          <FunctionImportMapping FunctionImportName="usp_ProductosDeleteAllByIdCategoría" FunctionName="NegocioWebModel.Store.usp_ProductosDeleteAllByIdCategoría" />
+          <FunctionImportMapping FunctionImportName="usp_ProductosDeleteAllByIdProveedor" FunctionName="NegocioWebModel.Store.usp_ProductosDeleteAllByIdProveedor" />
+          <FunctionImportMapping FunctionImportName="usp_ProductosInsert" FunctionName="NegocioWebModel.Store.usp_ProductosInsert" />
+          <FunctionImportMapping FunctionImportName="usp_productosPorNombre" FunctionName="NegocioWebModel.Store.usp_productosPorNombre">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_productosPorNombre_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="CantidadPorUnidad" ColumnName="CantidadPorUnidad" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ProductosSelect" FunctionName="NegocioWebModel.Store.usp_ProductosSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_ProductosSelect_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="IdCategoría" ColumnName="IdCategoría" />
+                <ScalarProperty Name="CantidadPorUnidad" ColumnName="CantidadPorUnidad" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="UnidadesEnExistencia" ColumnName="UnidadesEnExistencia" />
+                <ScalarProperty Name="UnidadesEnPedido" ColumnName="UnidadesEnPedido" />
+                <ScalarProperty Name="NivelNuevoPedido" ColumnName="NivelNuevoPedido" />
+                <ScalarProperty Name="Suspendido" ColumnName="Suspendido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ProductosSelectAll" FunctionName="NegocioWebModel.Store.usp_ProductosSelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_ProductosSelectAll_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="IdCategoría" ColumnName="IdCategoría" />
+                <ScalarProperty Name="CantidadPorUnidad" ColumnName="CantidadPorUnidad" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="UnidadesEnExistencia" ColumnName="UnidadesEnExistencia" />
+                <ScalarProperty Name="UnidadesEnPedido" ColumnName="UnidadesEnPedido" />
+                <ScalarProperty Name="NivelNuevoPedido" ColumnName="NivelNuevoPedido" />
+                <ScalarProperty Name="Suspendido" ColumnName="Suspendido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ProductosSelectAllByIdCategoría" FunctionName="NegocioWebModel.Store.usp_ProductosSelectAllByIdCategoría">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_ProductosSelectAllByIdCategoría_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="IdCategoría" ColumnName="IdCategoría" />
+                <ScalarProperty Name="CantidadPorUnidad" ColumnName="CantidadPorUnidad" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="UnidadesEnExistencia" ColumnName="UnidadesEnExistencia" />
+                <ScalarProperty Name="UnidadesEnPedido" ColumnName="UnidadesEnPedido" />
+                <ScalarProperty Name="NivelNuevoPedido" ColumnName="NivelNuevoPedido" />
+                <ScalarProperty Name="Suspendido" ColumnName="Suspendido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ProductosSelectAllByIdProveedor" FunctionName="NegocioWebModel.Store.usp_ProductosSelectAllByIdProveedor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_ProductosSelectAllByIdProveedor_Result">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="IdCategoría" ColumnName="IdCategoría" />
+                <ScalarProperty Name="CantidadPorUnidad" ColumnName="CantidadPorUnidad" />
+                <ScalarProperty Name="PrecioUnidad" ColumnName="PrecioUnidad" />
+                <ScalarProperty Name="UnidadesEnExistencia" ColumnName="UnidadesEnExistencia" />
+                <ScalarProperty Name="UnidadesEnPedido" ColumnName="UnidadesEnPedido" />
+                <ScalarProperty Name="NivelNuevoPedido" ColumnName="NivelNuevoPedido" />
+                <ScalarProperty Name="Suspendido" ColumnName="Suspendido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ProductosUpdate" FunctionName="NegocioWebModel.Store.usp_ProductosUpdate" />
+          <FunctionImportMapping FunctionImportName="usp_ProveedoresDelete" FunctionName="NegocioWebModel.Store.usp_ProveedoresDelete" />
+          <FunctionImportMapping FunctionImportName="usp_ProveedoresInsert" FunctionName="NegocioWebModel.Store.usp_ProveedoresInsert" />
+          <FunctionImportMapping FunctionImportName="usp_ProveedoresSelect" FunctionName="NegocioWebModel.Store.usp_ProveedoresSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_ProveedoresSelect_Result">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="NombreCompañía" ColumnName="NombreCompañía" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="País" ColumnName="País" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+                <ScalarProperty Name="PáginaPrincipal" ColumnName="PáginaPrincipal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ProveedoresSelectAll" FunctionName="NegocioWebModel.Store.usp_ProveedoresSelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_ProveedoresSelectAll_Result">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="NombreCompañía" ColumnName="NombreCompañía" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="País" ColumnName="País" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+                <ScalarProperty Name="PáginaPrincipal" ColumnName="PáginaPrincipal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ProveedoresUpdate" FunctionName="NegocioWebModel.Store.usp_ProveedoresUpdate" />
+          <FunctionImportMapping FunctionImportName="usp_resumenVentas" FunctionName="NegocioWebModel.Store.usp_resumenVentas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_resumenVentas_Result">
+                <ScalarProperty Name="FechaVenta" ColumnName="FechaVenta" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_resumenVentasCliente" FunctionName="NegocioWebModel.Store.usp_resumenVentasCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_resumenVentasCliente_Result">
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_resumenVentasCruzadas" FunctionName="NegocioWebModel.Store.usp_resumenVentasCruzadas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_resumenVentasCruzadas_Result">
+                <ScalarProperty Name="Anual" ColumnName="Anual" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_resumenVentasEmpleado" FunctionName="NegocioWebModel.Store.usp_resumenVentasEmpleado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_resumenVentasEmpleado_Result">
+                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_sysdiagramsDelete" FunctionName="NegocioWebModel.Store.usp_sysdiagramsDelete" />
+          <FunctionImportMapping FunctionImportName="usp_sysdiagramsSelect" FunctionName="NegocioWebModel.Store.usp_sysdiagramsSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_sysdiagramsSelect_Result">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_sysdiagramsSelectAll" FunctionName="NegocioWebModel.Store.usp_sysdiagramsSelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NegocioWebModel.usp_sysdiagramsSelectAll_Result">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,20 @@
+E:\Users\Alumno\Desktop\DemoEntityFramework\NegocioWebDAO\bin\Debug\NegocioWebDAO.dll.config
+E:\Users\Alumno\Desktop\DemoEntityFramework\NegocioWebDAO\bin\Debug\NegocioWebDAO.dll
+E:\Users\Alumno\Desktop\DemoEntityFramework\NegocioWebDAO\bin\Debug\NegocioWebDAO.pdb
+E:\Users\Alumno\Desktop\DemoEntityFramework\NegocioWebDAO\bin\Debug\EntityFramework.dll
+E:\Users\Alumno\Desktop\DemoEntityFramework\NegocioWebDAO\bin\Debug\EntityFramework.SqlServer.dll
+E:\Users\Alumno\Desktop\DemoEntityFramework\NegocioWebDAO\bin\Debug\EntityFramework.xml
+E:\Users\Alumno\Desktop\DemoEntityFramework\NegocioWebDAO\bin\Debug\EntityFramework.SqlServer.xml
+E:\Users\Alumno\Desktop\DemoEntityFramework\NegocioWebDAO\obj\Debug\NegocioWebDAO.csprojResolveAssemblyReference.cache
+E:\Users\Alumno\Desktop\DemoEntityFramework\NegocioWebDAO\obj\Debug\NegocioWebDAO.dll
+E:\Users\Alumno\Desktop\DemoEntityFramework\NegocioWebDAO\obj\Debug\NegocioWebDAO.pdb
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\NegocioWebDAO\obj\Debug\NegocioWebDAO.csprojResolveAssemblyReference.cache
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\NegocioWebDAO\obj\Debug\NegocioWebDAO.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\NegocioWebDAO\obj\Debug\NegocioWebDAO.pdb
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\NegocioWebDAO\bin\Debug\NegocioWebDAO.dll.config
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\NegocioWebDAO\bin\Debug\NegocioWebDAO.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\NegocioWebDAO\bin\Debug\NegocioWebDAO.pdb
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\NegocioWebDAO\bin\Debug\EntityFramework.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\NegocioWebDAO\bin\Debug\EntityFramework.SqlServer.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\NegocioWebDAO\bin\Debug\EntityFramework.xml
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\NegocioWebDAO\bin\Debug\EntityFramework.SqlServer.xml

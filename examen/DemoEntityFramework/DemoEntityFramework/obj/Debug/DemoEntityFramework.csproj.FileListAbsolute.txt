@@ -1,0 +1,51 @@
+E:\Users\julio flores\Desktop\NET\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.exe.config
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.exe.config
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.exe
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.pdb
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\bin\Debug\EntityFramework.dll
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\bin\Debug\NegocioWebDAO.dll
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\bin\Debug\NegocioWebDAO.pdb
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\bin\Debug\EntityFramework.xml
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\bin\Debug\EntityFramework.SqlServer.xml
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.csprojResolveAssemblyReference.cache
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.Form1.resources
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.Mantenimientos.WinEmpleados.resources
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.Properties.Resources.resources
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.csproj.GenerateResource.Cache
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.exe
+E:\Users\Alumno\Desktop\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.pdb
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.exe.config
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.exe
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.pdb
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.csprojResolveAssemblyReference.cache
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.Form1.resources
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.Mantenimientos.WinCompañias.resources
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.Mantenimientos.WinEmpleados.resources
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.Properties.Resources.resources
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.csproj.GenerateResource.Cache
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.exe
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\DemoEntityFramework.pdb
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\EntityFramework.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\NegocioWebDAO.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\NegocioWebDAO.pdb
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\EntityFramework.xml
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\EntityFramework.SqlServer.xml
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\obj\Debug\DemoEntityFramework.Reportes.WinReporte.resources
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\obj\Debug\RdlCompile.cache
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\obj\Debug\RdlCompile.compiled
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\Reportes\rptPedidos.rdlc
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\Microsoft.SqlServer.Types.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\de\Microsoft.SqlServer.Types.resources.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\es\Microsoft.SqlServer.Types.resources.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\fr\Microsoft.SqlServer.Types.resources.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\it\Microsoft.SqlServer.Types.resources.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\ja\Microsoft.SqlServer.Types.resources.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\ko\Microsoft.SqlServer.Types.resources.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\pt\Microsoft.SqlServer.Types.resources.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\ru\Microsoft.SqlServer.Types.resources.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+E:\Users\Alumno\Desktop\SEMANA 7\DemoEntityFramework\DemoEntityFramework\bin\Debug\zh-Hant\Microsoft.SqlServer.Types.resources.dll
